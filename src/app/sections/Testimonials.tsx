@@ -41,13 +41,10 @@ export default function Testimonials() {
   ];
 
   return (
-    <section
-      id="testimonials"
-      className="bg-[#FFFFFF] py-16 lg:py-24"
-    >
+    <section id="testimonials" className="bg-[#FFFFFF] py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* CABEÇALHO */}
+
+        {/* HEADER */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <span className="rounded-full bg-[#F3DCD4]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#B76E79]">
             Depoimentos
@@ -57,7 +54,7 @@ export default function Testimonials() {
             Histórias reais de quem{" "}
             <br className="hidden sm:inline" />
             transformou a{" "}
-            <span className="font-serif font-normal italic text-[#C8A291]">
+            <span className="font-serif italic font-normal text-[#C8A291]">
               autoestima
             </span>
           </h2>
@@ -68,7 +65,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* GRID DE DEPOIMENTOS */}
+        {/* GRID */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {depoimentos.map((dep) => (
             <article
@@ -76,7 +73,7 @@ export default function Testimonials() {
               className="flex h-full flex-col justify-between rounded-3xl border border-[#F3DCD4]/20 bg-[#F8F7F4]/40 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <div>
-                {/* ESTRELAS */}
+                {/* STARS */}
                 <div
                   className="mb-4 flex gap-0.5 text-[#C8A291]"
                   aria-label="Avaliação de 5 estrelas"
@@ -86,16 +83,15 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                {/* TEXTO */}
+                {/* TEXTO (CORRIGIDO) */}
                 <blockquote className="mb-6 text-sm italic leading-relaxed text-[#8E8E93]/90 sm:text-base">
-                  "{dep.texto}"
+                  {dep.texto}
                 </blockquote>
               </div>
 
               {/* CLIENTE */}
               <div className="flex items-center gap-4 border-t border-[#F3DCD4]/30 pt-4">
-                
-                {/* Avatar */}
+
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F3DCD4] text-sm font-bold text-[#B76E79]">
                   {dep.iniciais}
                 </div>
@@ -112,6 +108,7 @@ export default function Testimonials() {
                     </span>
                   </p>
                 </div>
+
               </div>
             </article>
           ))}
