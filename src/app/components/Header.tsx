@@ -1,145 +1,177 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react';
+import { HiMenu, HiX } from 'react-icons/hi';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = (): void => {
-    setIsOpen(!isOpen);
-  };
+  // Número + mensagem pronta
+  const whatsappUrl =
+    'https://wa.me/5511923736213?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação.';
 
-  const getGeneralWhatsAppLink = (): string => {
-    const phoneNumber = "5511999999999";
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
-    const message = encodeURIComponent(
-      "Olá! Vi o site de vocês e gostaria de fazer um pedido. 🍕",
-    );
-
-    return `https://wa.me/${phoneNumber}?text=${message}`;
-  };
+  const navItems = [
+    { href: '#about', label: 'Sobre Nós' },
+    { href: '#gallery', label: 'Procedimentos' },
+    { href: '#testimonials', label: 'Depoimentos' },
+    { href: '#faq', label: 'Dúvidas' },
+    { href: '#location', label: 'Contato' },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#2C4233] transition-all duration-300">
-      {/* Container Principal */}
-      <div className="flex h-16 w-full items-center justify-between px-6 md:h-20 lg:px-12">
-        <div className="flex items-center">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/logo.svg"
-              alt="Logo da pizzaria"
-              width={280}
-              height={120}
-              priority
-              className="h-14 w-auto object-contain md:h-16"
-            />
-          </Link>
-        </div>
+    <header className="sticky top-0 z-50 border-b border-[#F3DCD4]/30 bg-[#F8F7F4]/90 shadow-sm backdrop-blur-md">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-20 items-center justify-between">
 
-        {/* MENU DESKTOP */}
-        <nav className="hidden items-center gap-8 md:flex">
-          <Link
-            href="#cardapio"
-            className="relative text-[#F5F0E6] transition-colors duration-300 hover:text-[#DFB15B] after:absolute after:bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:bg-[#DFB15B] after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Cardápio
-          </Link>
+          {/* LOGO */}
+          <div className="shrink-0">
+            <a
+              href="#"
+              className="text-xl font-bold uppercase tracking-widest text-[#C8A291]"
+            >
+              Clínica
+              <span className="font-light text-[#B76E79]">
+                Estética
+              </span>
+            </a>
+          </div>
 
-          <Link
-            href="#sobre"
-            className="relative text-[#F5F0E6] transition-colors duration-300 hover:text-[#DFB15B] after:absolute after:bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:bg-[#DFB15B] after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Sobre Nós
-          </Link>
+          {/* MENU DESKTOP */}
+          <nav className="hidden items-center gap-8 md:flex">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="
+                  group relative inline-flex
+                  text-sm font-medium text-[#8E8E93]
+                  transition-all duration-300
+                  hover:text-[#B76E79]
+                "
+              >
+                {item.label}
 
-          <Link
-            href="#contato"
-            className="relative text-[#F5F0E6] transition-colors duration-300 hover:text-[#DFB15B] after:absolute after:bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:bg-[#DFB15B] after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Contato
-          </Link>
-        </nav>
+                {/* Linha animada hover */}
+                <span
+                  className="
+                    absolute -bottom-1 left-0
+                    h-0.5 w-0
+                    rounded-full
+                    bg-[#B76E79]
+                    transition-all duration-300
+                    group-hover:w-full
+                  "
+                />
+              </a>
+            ))}
+          </nav>
 
-        {/* BOTÃO DESKTOP + HAMBÚRGUER */}
-        <div className="flex items-center gap-4">
-          <Link
-            href={getGeneralWhatsAppLink()}
-            className="hidden rounded-full bg-[#D64527] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#b8351a] hover:shadow-lg active:scale-95 md:block"
-          >
-            Pedir Agora
-          </Link>
+          {/* CTA DESKTOP */}
+          <div className="hidden md:block">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                inline-flex items-center gap-2
+                rounded-full
+                bg-[#B76E79]
+                px-6 py-3
+                text-sm font-semibold text-white
+                shadow-md
+                transition-all duration-300
+                hover:-translate-y-0.5
+                hover:bg-[#C8A291]
+                hover:shadow-lg
+              "
+            >
+              <FaWhatsapp
+                className="text-base text-white"
+              />
+              Agendar Avaliação
+            </a>
+          </div>
 
-          {/* Botão Mobile */}
-          <button
-            onClick={toggleMenu}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-[#F5F0E6]/20 text-[#F5F0E6] transition-colors hover:bg-white/5 md:hidden"
-            aria-label={isOpen ? "fechar menu" : "abrir menu"}
-            aria-expanded={isOpen}
-          >
-            <span
-              className={`h-0.5 w-6 bg-[#F5F0E6] transition-all duration-300 ${
-                isOpen ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-
-            <span
-              className={`h-0.5 w-6 bg-[#F5F0E6] transition-all duration-300 ${
-                isOpen ? "opacity-0" : ""
-              }`}
-            />
-
-            <span
-              className={`h-0.5 w-6 bg-[#F5F0E6] transition-all duration-300 ${
-                isOpen ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
-          </button>
+          {/* BOTÃO MOBILE */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="
+                p-2 text-[#8E8E93]
+                transition-colors duration-300
+                hover:text-[#B76E79]
+                focus:outline-none
+              "
+              aria-label={
+                isOpen ? 'Fechar menu' : 'Abrir menu'
+              }
+              aria-expanded={isOpen}
+            >
+              {isOpen ? (
+                <HiX size={28} />
+              ) : (
+                <HiMenu size={28} />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* MENU MOBILE */}
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${
+        className={`absolute left-0 top-20 w-full border-b border-[#F3DCD4]/40 bg-[#F8F7F4] shadow-xl transition-all duration-300 ease-in-out md:hidden ${
           isOpen
-            ? "max-h-64 border-t border-[#F5F0E6]/10 bg-[#2C4233]"
-            : "max-h-0"
+            ? 'translate-y-0 opacity-100 pointer-events-auto'
+            : '-translate-y-4 opacity-0 pointer-events-none'
         }`}
       >
-        <nav className="flex flex-col gap-4 p-6">
-          <Link
-            href="#cardapio"
-            onClick={() => setIsOpen(false)}
-            className="text-lg text-[#F5F0E6] hover:text-[#DFB15B]"
-          >
-            Cardápio
-          </Link>
+        <div className="flex flex-col items-center space-y-4 px-4 pb-6 pt-4 text-center">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => setIsOpen(false)}
+              className="
+                w-full py-2
+                text-base font-medium
+                text-[#8E8E93]
+                transition-colors duration-300
+                hover:text-[#B76E79]
+              "
+            >
+              {item.label}
+            </a>
+          ))}
 
-          <Link
-            href="#sobre"
+          {/* CTA MOBILE */}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setIsOpen(false)}
-            className="text-lg text-[#F5F0E6] hover:text-[#DFB15B]"
+            className="
+              flex w-full max-w-xs
+              items-center justify-center gap-2
+              rounded-full
+              bg-[#B76E79]
+              px-6 py-3
+              font-bold text-white
+              shadow-md
+              transition-all duration-300
+              hover:scale-[1.02]
+              hover:bg-[#C8A291]
+            "
           >
-            Sobre Nós
-          </Link>
-
-          <Link
-            href="#contato"
-            onClick={() => setIsOpen(false)}
-            className="text-lg text-[#F5F0E6] hover:text-[#DFB15B]"
-          >
-            Contato
-          </Link>
-
-          <Link
-            href="#pedir"
-            onClick={() => setIsOpen(false)}
-            className="mt-2 inline-block rounded-full bg-[#D64527] py-3 text-center text-sm font-semibold text-white"
-          >
-            Pedir Agora
-          </Link>
-        </nav>
+            <FaWhatsapp
+              size={20}
+              className="text-white"
+            />
+            Chamar no WhatsApp
+          </a>
+        </div>
       </div>
     </header>
   );

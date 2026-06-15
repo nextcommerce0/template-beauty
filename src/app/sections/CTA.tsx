@@ -1,75 +1,81 @@
+import { FaWhatsapp } from "react-icons/fa";
+import { FiClock, FiShield } from "react-icons/fi";
 
+export default function Cta() {
+  // ALTERAR NÚMERO
+  const numeroWhatsapp = "5491123456789";
 
-export default function CTA() {
-  // Link do WhatsApp
-  const getGeneralWhatsAppLink = (): string => {
-    const phoneNumber = "5511999999999";
+  const mensagemWhatsapp =
+    "Olá! Gostaria de agendar uma avaliação e saber mais sobre os procedimentos.";
 
-    const message = encodeURIComponent(
-      "Olá! Vi o site de vocês e gostaria de fazer um pedido. 🍕"
-    );
-
-    return `https://wa.me/${phoneNumber}?text=${message}`;
-  };
+  const whatsappUrl = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(
+    mensagemWhatsapp,
+  )}`;
 
   return (
-    <section id="contato" className="w-full bg-[#2C4233] py-16 md:py-20">
-      <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
-        
-        {/* Ícone */}
-        <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#F5F0E6]/10 text-[#DFB15B]">
-          <svg
-            className="h-8 w-8"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-            />
-          </svg>
+    <section className="bg-[#FFFFFF] py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* CARD CTA */}
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-[#B76E79] px-6 py-12 text-center shadow-xl sm:p-16 lg:p-20">
+          {/* BG DECORATIVO */}
+          <div className="pointer-events-none absolute right-0 top-0 h-80 w-80 translate-x-20 -translate-y-20 rounded-full bg-white/10 blur-2xl opacity-60" />
+
+          <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 -translate-x-20 translate-y-20 rounded-full bg-[#F3DCD4]/20 blur-2xl opacity-40" />
+
+          {/* CONTEÚDO */}
+          <div className="relative z-10 mx-auto max-w-3xl">
+            <span className="mb-6 inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+              Agendamento Exclusivo
+            </span>
+
+            <h2 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Não adie o cuidado e o carinho que a sua{" "}
+              <span className="font-serif font-normal italic text-[#F3DCD4]">
+                pele merece
+              </span>
+              .
+            </h2>
+
+            <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">
+              Os horários para este mês são limitados. Clique no botão abaixo,
+              fale com nosso atendimento e garanta a sua vaga na próxima semana.
+            </p>
+
+            {/* BOTÃO */}
+            <div className="mb-10 flex justify-center">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Agendar avaliação no WhatsApp"
+                className="inline-flex w-full transform items-center justify-center gap-3 rounded-full bg-[#25D366] px-8 py-4 text-lg font-extrabold text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-[#20BA59] hover:shadow-lg sm:w-auto sm:px-10 sm:py-5 sm:text-xl"
+              >
+                <FaWhatsapp
+                  size={24}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
+                Quero Agendar Agora
+              </a>
+            </div>
+
+            {/* MICRO GATILHOS */}
+            <div className="mx-auto flex max-w-md flex-col items-center justify-center gap-6 border-t border-white/20 pt-8 text-xs text-white/80 sm:flex-row sm:text-sm">
+              <div className="flex items-center gap-2">
+                <FiClock size={16} className="shrink-0 text-[#F3DCD4]" />
+
+                <span>
+                  Resposta rápida em até <strong>5 minutos</strong>
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <FiShield size={16} className="shrink-0 text-[#F3DCD4]" />
+
+                <span>Avaliação individualizada</span>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Texto */}
-        <h2 className="text-3xl font-extrabold tracking-tight text-[#F5F0E6] sm:text-4xl">
-          Bateu a fome por aí? <br />
-          <span className="text-[#DFB15B]">
-            Peça agora direto pelo WhatsApp.
-          </span>
-        </h2>
-
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#F5F0E6]/80 md:text-lg">
-          Não precisa criar conta nem preencher cadastros
-          longos. É só clicar abaixo, falar com nossa equipe
-          e montar seu pedido em poucos minutos.
-        </p>
-
-        {/* CTA */}
-        <div className="mt-8 flex justify-center">
-          <a
-            href={getGeneralWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-full bg-[#D64527] px-8 py-4 text-base font-bold text-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-[#b8351a] hover:shadow-2xl active:scale-95 active:translate-y-0"
-          >
-            <svg
-              className="h-5 w-5 fill-current"
-              viewBox="0 0 24 24"
-            >
-              <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
-            </svg>
-
-            Iniciar Pedido
-          </a>
-        </div>
-
-        {/* Informação secundária */}
-        <p className="mt-4 text-xs tracking-wide text-[#F5F0E6]/50">
-          ⏱️ Tempo médio de entrega: 35 a 45 minutos
-        </p>
       </div>
     </section>
   );

@@ -1,101 +1,151 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
+import { FaWhatsapp } from "react-icons/fa";
 
-interface ImageItem {
-  src: string;
-  alt: string;
+interface Procedimento {
+  id: number;
+  titulo: string;
+  descricao: string;
+  imagemUrl: string;
+  tag: string;
 }
 
 export default function Gallery() {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-  // Array preparado para as suas 4 fotos da galeria
-  const galleryImages: ImageItem[] = [
-    { src: "/forno.jpg", alt: "Nosso forno a lenha artesanal" },
-    { src: "/massa.jpg", alt: "Mãos do chef abrindo a massa com amor" },
-    { src: "/local.jpg", alt: "Ambiente interno aconchegante da pizzaria" },
-    { src: "/horta.jpg", alt: "Ingredientes frescos selecionados da horta" },
+  const procedimentos: Procedimento[] = [
+    {
+      id: 1,
+      titulo: "Toxina Botulínica",
+      descricao:
+        "Prevenção e suavização de linhas de expressão e rugas faciais com aspecto natural.",
+      imagemUrl: "/botox.jpg",
+      tag: "Facial",
+    },
+    {
+      id: 2,
+      titulo: "Preenchimento Labial",
+      descricao:
+        "Volume, contorno e hidratação para os lábios, respeitando as proporções do seu rosto.",
+      imagemUrl: "/preenchimento.jpg",
+      tag: "Lábios",
+    },
+    {
+      id: 3,
+      titulo: "Bioestimuladores de Colágeno",
+      descricao:
+        "Tratamento avançado contra a flacidez, devolvendo a firmeza e a elasticidade da pele.",
+      imagemUrl: "/colageno.jpg",
+      tag: "Flacidez",
+    },
+    {
+      id: 4,
+      titulo: "Peeling Químico",
+      descricao:
+        "Renovação celular profunda para reduzir manchas, melasma e cicatrizes de acne.",
+      imagemUrl: "/peeling.jpg",
+      tag: "Pele",
+    },
+    {
+      id: 5,
+      titulo: "Lipo de Alta Definição",
+      descricao:
+        "Protocolos corporais focados na redução de gordura localizada e definição de contornos.",
+      imagemUrl: "/lipo.jpg",
+      tag: "Corporal",
+    },
+    {
+      id: 6,
+      titulo: "Limpeza de Pele Premium",
+      descricao:
+        "Extração minuciosa combinada com hidratação profunda e fototerapia LED.",
+      imagemUrl: "/limpeza.jpg",
+      tag: "Cuidados",
+    },
   ];
 
-  const prevSlide = (): void => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? galleryImages.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
+  const getWhatsappLink = (procedimentoNome: string) => {
+    const mensagem = `Olá! Vi no site o procedimento de *${procedimentoNome}* e gostaria de agendar uma avaliação para saber mais.`;
 
-  const nextSlide = (): void => {
-    const isLastSlide = currentIndex === galleryImages.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+    const numeroWhatsapp = "5491123456789"; // ALTERAR
+
+    return `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(
+      mensagem,
+    )}`;
   };
 
   return (
-    <div className="relative w-full lg:w-1/2 group">
-      {/* Detalhe estético de moldura traseira */}
-      <div className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border-2 border-[#2C4233]/20" />
-      
-      {/* Container de exibição das imagens */}
-      <div className="relative h-87.5 w-full overflow-hidden rounded-3xl sm:h-112.5 shadow-lg bg-[#2C4233]/5">
-        {galleryImages.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 h-full w-full transition-opacity duration-700 ease-in-out ${
-              index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-            }`}
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-              priority={index === 0}
-            />
-            {/* Legenda da foto atual */}
-            <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/60 to-transparent p-6 pt-12 text-white text-sm font-medium">
-              {image.alt}
-            </div>
-          </div>
-        ))}
+    <section id="gallery" className="bg-[#F8F7F4] py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* CABEÇALHO */}
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="rounded-full bg-[#F3DCD4]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#B76E79]">
+            Nossos Serviços
+          </span>
 
-        {/* Seta Esquerda */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/80 p-2.5 text-[#2C4233] shadow-md backdrop-blur-sm transition-all hover:bg-white md:opacity-0 md:group-hover:opacity-100 cursor-pointer"
-          aria-label="Foto anterior"
-        >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
+          <h2 className="mt-4 mb-4 text-3xl font-bold text-[#8E8E93] sm:text-4xl">
+            Tratamentos sob medida para o que{" "}
+            <br className="hidden sm:inline" />
+            você{" "}
+            <span className="font-serif font-normal italic text-[#C8A291]">
+              deseja transformar
+            </span>
+          </h2>
 
-        {/* Seta Direita */}
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/80 p-2.5 text-[#2C4233] shadow-md backdrop-blur-sm transition-all hover:bg-white md:opacity-0 md:group-hover:opacity-100 cursor-pointer"
-          aria-label="Próxima foto"
-        >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+          <p className="text-base text-[#8E8E93]/80">
+            Escolha o procedimento desejado abaixo e clique para iniciar um
+            atendimento personalizado via WhatsApp.
+          </p>
+        </div>
 
-        {/* Indicadores de bolinha (Dots) */}
-        <div className="absolute bottom-6 right-6 z-20 flex gap-1.5">
-          {galleryImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? "w-6 bg-[#D64527]" : "w-2 bg-white/50"
-              }`}
-              aria-label={`Ir para foto ${index + 1}`}
-            />
+        {/* GRID */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {procedimentos.map((proc) => (
+            <article
+              key={proc.id}
+              className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#F3DCD4]/20 bg-white shadow-md transition-all duration-300 hover:shadow-xl"
+            >
+              {/* IMAGEM */}
+              <div className="relative aspect-4/3 overflow-hidden bg-[#F3DCD4]/10">
+                <span className="absolute left-4 top-4 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[#B76E79] shadow-sm backdrop-blur-sm">
+                  {proc.tag}
+                </span>
+
+                <Image
+                  src={proc.imagemUrl}
+                  alt={proc.titulo}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+
+              {/* CONTEÚDO */}
+              <div className="flex grow flex-col p-6 text-left">
+                <h3 className="mb-2 text-xl font-bold text-[#8E8E93] transition-colors group-hover:text-[#B76E79]">
+                  {proc.titulo}
+                </h3>
+
+                <p className="mb-6 grow text-sm leading-relaxed text-[#8E8E93]/80">
+                  {proc.descricao}
+                </p>
+
+                {/* BOTÃO */}
+                <a
+                  href={getWhatsappLink(proc.titulo)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Falar no WhatsApp sobre ${proc.titulo}`}
+                  className="group/button inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-[#B76E79] bg-white px-4 py-3 text-sm font-bold text-[#B76E79] transition-all duration-200 hover:bg-[#B76E79] hover:text-white"
+                >
+                  <FaWhatsapp
+                    size={18}
+                    className="transition-colors duration-200 group-hover/button:text-white"
+                  />
+                  Saber mais no WhatsApp
+                </a>
+              </div>
+            </article>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

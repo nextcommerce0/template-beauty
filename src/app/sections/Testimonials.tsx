@@ -1,131 +1,118 @@
-import Image from "next/image";
+import { AiFillStar } from "react-icons/ai";
 
-interface TestimonialItem {
+interface Depoimento {
   id: number;
-  name: string;
-  role: string;
-  comment: string;
-  rating: number;
-  avatar: string;
-  date: string;
+  nome: string;
+  idade: string;
+  texto: string;
+  procedimento: string;
+  iniciais: string;
 }
 
 export default function Testimonials() {
-  const reviews: TestimonialItem[] = [
+  const depoimentos: Depoimento[] = [
     {
       id: 1,
-      name: "Rodrigo Silva",
-      role: "Guia Local Google",
-      comment:
-        "A massa de fermentação natural deles é surreal de leve! Pedi a Margherita Premium e dá para sentir o frescor dos ingredientes.",
-      rating: 5,
-      avatar: "/avatar-1.png",
-      date: "Há 1 semana",
+      nome: "Mariana Silva",
+      idade: "34 anos",
+      texto:
+        "Fiz o preenchimento labial e amei o resultado! Ficou super natural, exatamente como eu queria. O atendimento e o cuidado com a biossegurança me deixaram muito tranquila.",
+      procedimento: "Preenchimento Labial",
+      iniciais: "MS",
     },
     {
       id: 2,
-      name: "Mariana Costa",
-      role: "Cliente do Google",
-      comment:
-        "Estávamos procurando uma pizzaria artesanal de verdade e achamos. O processo de 48h realmente faz diferença.",
-      rating: 5,
-      avatar: "/avatar-2.png",
-      date: "Há 3 dias",
+      nome: "Beatriz Oliveira",
+      idade: "28 anos",
+      texto:
+        "A limpeza de pele premium é maravilhosa. Minha pele mudou completamente após os protocolos exclusivos que montaram para mim. Espaço lindo e muito aconchegante!",
+      procedimento: "Limpeza de Pele Premium",
+      iniciais: "BO",
+    },
+    {
+      id: 3,
+      nome: "Camila Rodrigues",
+      idade: "42 anos",
+      texto:
+        "O botox superou minhas expectativas. As rugas sumiram, mas eu não perdi a minha expressão natural. Indico de olhos fechados para todas as minhas amigas.",
+      procedimento: "Toxina Botulínica",
+      iniciais: "CR",
     },
   ];
 
   return (
-    <section className="w-full bg-[#F5F0E6] py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Header */}
-        <div className="flex flex-col items-center justify-between gap-6 border-b border-[#2C4233]/10 pb-8 md:flex-row md:items-end">
-          <div className="text-center md:text-left">
-            <span className="text-sm font-bold uppercase tracking-wider text-[#D64527]">
-              Depoimentos reais
+    <section
+      id="testimonials"
+      className="bg-[#FFFFFF] py-16 lg:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* CABEÇALHO */}
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="rounded-full bg-[#F3DCD4]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#B76E79]">
+            Depoimentos
+          </span>
+
+          <h2 className="mt-4 mb-4 text-3xl font-bold text-[#8E8E93] sm:text-4xl">
+            Histórias reais de quem{" "}
+            <br className="hidden sm:inline" />
+            transformou a{" "}
+            <span className="font-serif font-normal italic text-[#C8A291]">
+              autoestima
             </span>
+          </h2>
 
-            <h2 className="mt-1 text-3xl font-extrabold tracking-tight text-[#2C4233] sm:text-4xl">
-              Quem prova,{" "}
-              <span className="font-medium text-[#2C4233]/70">recomenda.</span>
-            </h2>
-          </div>
-
-          {/* Google rating */}
-          <div className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm">
-            <div className="text-right">
-              <div className="flex items-center gap-1 text-[#DFB15B]">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className="h-5 w-5 fill-current"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-
-              <p className="mt-1 text-xs font-bold text-[#2C4233]">
-                4.9 / 5 no Google Avaliações
-              </p>
-            </div>
-
-            <div className="flex h-10 w-10 items-center justify-center border-l border-[#2C4233]/10 pl-3">
-              <span className="text-xl font-black text-[#2C4233]">G</span>
-            </div>
-          </div>
+          <p className="text-base text-[#8E8E93]/80">
+            A maior satisfação da nossa equipe é ver o sorriso e a confiança
+            de cada cliente após os nossos cuidados.
+          </p>
         </div>
 
-        {/* Reviews */}
-        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
-          {reviews.map((review) => (
+        {/* GRID DE DEPOIMENTOS */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {depoimentos.map((dep) => (
             <article
-              key={review.id}
-              className="rounded-3xl border border-[#2C4233]/5 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              key={dep.id}
+              className="flex h-full flex-col justify-between rounded-3xl border border-[#F3DCD4]/20 bg-[#F8F7F4]/40 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
             >
-              {/* Topo */}
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  {/* Avatar */}
-                  <div className="relative h-12 w-12 overflow-hidden rounded-full bg-[#2C4233]/10">
-                    <Image
-                      src={review.avatar}
-                      alt={review.name}
-                      fill
-                      sizes="48px"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div>
-                    <h3 className="text-sm font-bold text-[#2C4233]">
-                      {review.name}
-                    </h3>
-
-                    <p className="text-xs text-[#2C4233]/50">{review.role}</p>
-                  </div>
+              <div>
+                {/* ESTRELAS */}
+                <div
+                  className="mb-4 flex gap-0.5 text-[#C8A291]"
+                  aria-label="Avaliação de 5 estrelas"
+                >
+                  {[...Array(5)].map((_, i) => (
+                    <AiFillStar key={i} size={18} />
+                  ))}
                 </div>
 
-                <span className="text-xs text-[#2C4233]/40">{review.date}</span>
+                {/* TEXTO */}
+                <blockquote className="mb-6 text-sm italic leading-relaxed text-[#8E8E93]/90 sm:text-base">
+                  "{dep.texto}"
+                </blockquote>
               </div>
 
-              {/* Estrelas */}
-              <div className="mt-4 flex gap-0.5 text-[#DFB15B]">
-                {[...Array(review.rating)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className="h-4 w-4 fill-current"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
+              {/* CLIENTE */}
+              <div className="flex items-center gap-4 border-t border-[#F3DCD4]/30 pt-4">
+                
+                {/* Avatar */}
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F3DCD4] text-sm font-bold text-[#B76E79]">
+                  {dep.iniciais}
+                </div>
 
-              {/* Comentário */}
-              <p className="mt-3 text-sm italic leading-relaxed text-[#2C4233]/80">
-                &quot;{review.comment}&quot;
-              </p>
+                <div className="text-left">
+                  <h4 className="text-sm font-bold text-[#8E8E93] sm:text-base">
+                    {dep.nome}
+                  </h4>
+
+                  <p className="text-xs text-[#8E8E93]/60">
+                    {dep.idade} •{" "}
+                    <span className="font-medium text-[#C8A291]">
+                      {dep.procedimento}
+                    </span>
+                  </p>
+                </div>
+              </div>
             </article>
           ))}
         </div>

@@ -1,79 +1,158 @@
-import Gallery from "./Gallery"; // Certifique-se de ajustar o caminho da importação de acordo com sua pasta
-
-interface TopicItem {
-  id: number;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}
+import Image from "next/image";
+import { FiCheckCircle } from "react-icons/fi";
 
 export default function About() {
-  const topics: TopicItem[] = [
-    {
-      id: 1,
-      title: "Feita com Amor",
-      description: "Cada disco de massa é aberto à mão com carinho, mantendo a tradição viva e garantindo um formato artesanal único.",
-      icon: (
-        <svg className="h-6 w-6 text-[#D64527]" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-      ),
-    },
-    {
-      id: 2,
-      title: "Processo Lento e Natural",
-      description: "Nossa massa descansa por até 48 horas. O resultado é uma digestão incrivelmente leve, com bordas aeradas e crocantes.",
-      icon: (
-        <svg className="h-6 w-6 text-[#D64527]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-    },
-  ];
-
   return (
-    <section id="sobre" className="w-full bg-[#F5F0E6] py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-center">
+    <section
+      id="about"
+      className="bg-[#FFFFFF] py-16 lg:py-24 overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
           
-          {/* IMPORTAÇÃO DO COMPONENTE FILHO DA GALERIA */}
-          <Gallery />
+          {/* COLUNA DA IMAGEM */}
+          <div className="order-last lg:order-first lg:col-span-5">
+            <div className="relative">
+              
+              {/* Moldura decorativa */}
+              <div className="pointer-events-none absolute -left-4 -top-4 -z-10 h-full w-full rounded-4xl border-2 border-[#F3DCD4]" />
 
-          {/* CONTEÚDO INSTITUCIONAL */}
-          <div className="w-full lg:w-1/2">
-            <span className="text-sm font-bold tracking-wider text-[#D64527] uppercase">
-              Nossa Cozinha & Espaço
-            </span>
-            
-            <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-[#2C4233] sm:text-4xl">
-              Conheça a nossa <br />
-              <span className="text-[#2C4233]/70 font-medium">casa e nossa paixão.</span>
-            </h2>
-            
-            <p className="mt-4 text-base leading-relaxed text-[#2C4233]/80">
-              Acreditamos que comer pizza é uma experiência visual e afetiva. Navegue pela nossa galeria ao lado para conhecer nosso forno, o cuidado no preparo e o ambiente acolhedor que preparamos para receber você e sua família.
-            </p>
+              {/* Container da imagem */}
+              <div className="relative aspect-3/4 overflow-hidden rounded-4xl bg-[#F3DCD4]/10 shadow-xl">
+                <Image
+                  src="/about.jpg"
+                  alt="Doutora ou especialista responsável pela clínica"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  priority={false}
+                />
+              </div>
 
-            {/* LISTA DE TÓPICOS */}
-            <div className="mt-8 flex flex-col gap-4">
-              {topics.map((topic) => (
-                <div key={topic.id} className="flex gap-4 items-start rounded-2xl bg-white/40 p-4 backdrop-blur-sm border border-[#2C4233]/5 transition-all duration-300 hover:bg-white/80 hover:shadow-sm">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#D64527]/10">
-                    {topic.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#2C4233] text-sm">
-                      {topic.title}
-                    </h3>
-                    <p className="mt-0.5 text-xs leading-relaxed text-[#2C4233]/70">
-                      {topic.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              {/* Card flutuante */}
+              <div className="absolute -bottom-6 -right-4 max-w-50 rounded-2xl bg-[#C8A291] p-5 text-white shadow-lg">
+                <p className="mb-1 font-serif text-3xl font-extrabold">
+                  5+
+                </p>
+
+                <p className="text-xs font-medium uppercase tracking-wide opacity-90">
+                  Anos de experiência transformando faces e corpos.
+                </p>
+              </div>
             </div>
           </div>
 
+          {/* COLUNA DO TEXTO */}
+          <div className="flex flex-col justify-center text-center lg:col-span-7 lg:text-left">
+            <span className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#B76E79]">
+              Quem Cuida de Você
+            </span>
+
+            <h2 className="mb-6 text-3xl font-bold leading-tight text-[#8E8E93] sm:text-4xl">
+              Ciência e sensibilidade para destacar a sua{" "}
+              <span className="font-serif font-normal italic text-[#C8A291]">
+                verdadeira essência
+              </span>
+              .
+            </h2>
+
+            <div className="mb-8 space-y-4 text-base leading-relaxed text-[#8E8E93]/80">
+              <p>
+                Fundada com o propósito de humanizar a área da estética
+                avançada, nossa clínica une tecnologia de ponta a um olhar
+                artístico e individualizado. Acreditamos que a beleza ideal é
+                aquela que preserva a sua identidade.
+              </p>
+
+              <p>
+                Cada detalhe do nosso espaço foi planejado para oferecer uma
+                experiência acolhedora, segura e com resultados reais que
+                elevam sua autoconfiança desde a primeira sessão.
+              </p>
+            </div>
+
+            {/* Benefícios */}
+            <div className="mx-auto mb-8 grid max-w-xl grid-cols-1 gap-4 text-left sm:grid-cols-2 lg:mx-0">
+              
+              <div className="flex items-start gap-3">
+                <FiCheckCircle
+                  className="mt-0.5 shrink-0 text-[#B76E79]"
+                  size={20}
+                />
+
+                <div>
+                  <h4 className="text-sm font-semibold text-[#8E8E93]">
+                    Profissionais Especialistas
+                  </h4>
+
+                  <p className="mt-0.5 text-xs text-[#8E8E93]/70">
+                    Equipe qualificada e em constante atualização.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <FiCheckCircle
+                  className="mt-0.5 shrink-0 text-[#B76E79]"
+                  size={20}
+                />
+
+                <div>
+                  <h4 className="text-sm font-semibold text-[#8E8E93]">
+                    Produtos Premium
+                  </h4>
+
+                  <p className="mt-0.5 text-xs text-[#8E8E93]/70">
+                    Utilizamos apenas as marcas líderes de mercado.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <FiCheckCircle
+                  className="mt-0.5 shrink-0 text-[#B76E79]"
+                  size={20}
+                />
+
+                <div>
+                  <h4 className="text-sm font-semibold text-[#8E8E93]">
+                    Protocolos Exclusivos
+                  </h4>
+
+                  <p className="mt-0.5 text-xs text-[#8E8E93]/70">
+                    O tratamento é desenhado sob medida para você.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <FiCheckCircle
+                  className="mt-0.5 shrink-0 text-[#B76E79]"
+                  size={20}
+                />
+
+                <div>
+                  <h4 className="text-sm font-semibold text-[#8E8E93]">
+                    Ambiente Seguro
+                  </h4>
+
+                  <p className="mt-0.5 text-xs text-[#8E8E93]/70">
+                    Rigor cirúrgico em biossegurança.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="flex justify-center lg:justify-start">
+              <a
+                href="#gallery"
+                className="inline-flex items-center justify-center rounded-full border border-[#B76E79]/40 px-6 py-3 text-sm font-semibold text-[#B76E79] transition-all duration-200 hover:border-[#C8A291]/40 hover:text-[#C8A291]"
+              >
+                Conheça nossos procedimentos
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

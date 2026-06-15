@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import WhatsappButton from "./components/WhatsappButton";
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "brasa - A verdadeira pizza artesanal moderna",
+  title: "Clinica de Estética Avançada - Beleza Natural e Resultados Incríveis",
   description:
-    "Descubra o sabor da tradição italiana com um toque contemporâneo. Massa leve, bordas aeradas e ingredientes rigorosamente selecionados.",
+    "Clínica de Estética Avançada especializada em tratamentos faciais e corporais personalizados. Realce sua beleza natural com segurança, tecnologia de ponta e resultados incríveis. Agende sua avaliação hoje mesmo!",
 };
 
 export default function RootLayout({
@@ -28,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <WhatsappButton />
         {children}
       </body>
     </html>

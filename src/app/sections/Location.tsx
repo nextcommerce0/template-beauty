@@ -1,71 +1,146 @@
-export default function Location() {
-  // Substitua a URL do src do iframe abaixo pelo link incorporado real do Google Maps da sua pizzaria
-  const googleMapsIframeSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.1357144011613!2d-46.678466199999995!3d-23.5276207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce57fd1d715d45%3A0x864e5421d6195cb1!2sAllianz%20Parque!5e0!3m2!1spt-BR!2sar!4v1781107416120!5m2!1spt-BR!2sar";
+import { FiMapPin, FiClock, FiPhone } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 
-  
+export default function Location() {
+  // ALTERAR NÚMERO
+  const numeroWhatsapp = "5491123456789";
+
+  const mensagemWhatsapp =
+    "Olá! Gostaria de saber sobre horários e localização da clínica.";
+
+  const whatsappUrl = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(
+    mensagemWhatsapp
+  )}`;
+
+  // Substituir pelo embed real do Google Maps
+  const googleMapsIframeUrl =
+    "https://www.google.com/maps?q=Av+Paulista+1000+Sao+Paulo&output=embed";
 
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#2C4233]/5 rounded-3xl overflow-hidden border border-[#2C4233]/10">
-        {/* Textos de Funcionamento e Endereço */}
-        <div className="p-8 lg:p-12 flex flex-col justify-center">
-          <span className="text-xs font-bold tracking-wider text-[#D64527] uppercase">
-            Onde Estamos
+    <section id="location" className="bg-[#F8F7F4] py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* HEADER */}
+        <div className="mx-auto mb-16 max-w-2xl text-center">
+          <span className="rounded-full bg-[#F3DCD4]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#B76E79]">
+            Localização e Contato
           </span>
-          <h3 className="mt-2 text-2xl font-extrabold text-[#2C4233]">
-            Venha nos visitar ou retire seu pedido
-          </h3>
 
-          <div className="mt-6 space-y-4 text-sm text-[#2C4233]/80">
-            <p className="flex items-start gap-3">
-              <span className="text-[#D64527] font-bold text-base">📍</span>
-              <span>
-                Rua das Pizzas Artesanais, 123 — Bairro Jardins
-                <br />
-                São Paulo - SP, 01234-567
-              </span>
-            </p>
-            <p className="flex items-start gap-3">
-              <span className="text-[#D64527] font-bold text-base">⏰</span>
-              <span>
-                <strong>Terça a Quinta:</strong> 18h às 23h
-                <br />
-                <strong>Sexta a Domingo:</strong> 18h às 23h30
-              </span>
-            </p>
-            <p className="flex items-start gap-3">
-              <span className="text-[#D64527] font-bold text-base">📞</span>
-              <span>(11) 99999-9999 (WhatsApp)</span>
-            </p>
-          </div>
+          <h2 className="mt-4 mb-4 text-3xl font-bold text-[#8E8E93] sm:text-4xl">
+            Venha nos{" "}
+            <span className="font-serif font-normal italic text-[#C8A291]">
+              visitar
+            </span>
+          </h2>
 
-          <div className="mt-8">
-            <a
-              href="https://maps.app.goo.gl/sErxix61SfFffXAaA" // Substitua pelo link direto de rotas do Google Maps
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block rounded-full border border-[#2C4233] px-6 py-2.5 text-xs font-bold text-[#2C4233] transition-all duration-300 hover:bg-[#2C4233] hover:text-[#F5F0E6]"
-            >
-              Abrir no Google Maps ➔
-            </a>
-          </div>
+          <p className="text-sm text-[#8E8E93]/80 sm:text-base">
+            Ambiente planejado com sofisticação e segurança para proporcionar a
+            você uma experiência única.
+          </p>
         </div>
 
-        {/* IFRAME MAPA DO GOOGLE */}
-        <div className="relative h-75 w-full lg:h-full min-h-75">
-          <iframe
-            src={googleMapsIframeSrc}
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Localização da Pizzaria no Google Maps"
-            className="w-full h-full grayscale-20 contrast-110"
-          />
+        {/* GRID */}
+        <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-12">
+          
+          {/* INFO */}
+          <div className="flex flex-col justify-between rounded-4xl border border-[#F3DCD4]/20 bg-white p-8 shadow-sm sm:p-10 lg:col-span-5">
+            
+            <div className="space-y-8 text-left">
+              
+              {/* ENDEREÇO */}
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F3DCD4]/50 text-[#B76E79]">
+                  <FiMapPin size={20} />
+                </div>
+
+                <div>
+                  <h4 className="mb-1 text-base font-bold text-[#8E8E93]">
+                    Nosso Endereço
+                  </h4>
+
+                  <p className="text-sm leading-relaxed text-[#8E8E93]/80">
+                    Av. Paulista, 1000 - Sala 121
+                    <br />
+                    Bela Vista - São Paulo/SP
+                    <br />
+                    <span className="mt-1 inline-block text-xs font-medium text-[#C8A291]">
+                      * Estacionamento conveniado no local
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              {/* HORÁRIO */}
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F3DCD4]/50 text-[#B76E79]">
+                  <FiClock size={20} />
+                </div>
+
+                <div>
+                  <h4 className="mb-1 text-base font-bold text-[#8E8E93]">
+                    Horário de Atendimento
+                  </h4>
+
+                  <p className="text-sm leading-relaxed text-[#8E8E93]/80">
+                    Segunda a Sexta: 09h às 20h
+                    <br />
+                    Sábados: 09h às 14h
+                    <br />
+                    <span className="mt-1 inline-block text-xs font-medium text-red-400">
+                      * Atendimento exclusivo com hora marcada
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              {/* CONTATO */}
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F3DCD4]/50 text-[#B76E79]">
+                  <FiPhone size={20} />
+                </div>
+
+                <div>
+                  <h4 className="mb-1 text-base font-bold text-[#8E8E93]">
+                    Contato Direto
+                  </h4>
+
+                  <p className="text-sm text-[#8E8E93]/80">
+                    Telefone: (11) 3333-4444
+                    <br />
+                    WhatsApp: (11) 99999-9999
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* BOTÃO */}
+            <div className="mt-10 border-t border-[#F3DCD4]/20 pt-6">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Falar no WhatsApp"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-4 text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-[#20ba59]"
+              >
+                <FaWhatsapp size={20} />
+                Verificar Horários Disponíveis
+              </a>
+            </div>
+          </div>
+
+          {/* MAPA */}
+          <div className="min-h-95 overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-md lg:col-span-7">
+            <iframe
+              src={googleMapsIframeUrl}
+              className="h-full min-h-95 w-full border-0"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Mapa de localização da clínica"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

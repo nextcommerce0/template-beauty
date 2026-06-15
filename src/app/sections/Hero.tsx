@@ -1,60 +1,125 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Hero() {
+  const whatsappUrl =
+    "https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação.";
+
   return (
-    <section className="relative w-full h-[85vh] min-h-125 flex items-center overflow-hidden">
-      
-      {/* 1. IMAGEM DE FUNDO (OTIMIZADA PELO NEXT.JS) */}
-      <Image
-        src="/pizzahero.jpg" // Substitua por uma foto da pizza em alta resolução
-        alt="Fundo da pizzaria com forno a lenha ou ingredientes"
-        fill
-        priority
-        quality={85}
-        sizes="100vw"
-        className="object-cover object-center"
-      />
+    <section className="relative flex min-h-[calc(100vh-80px)] items-center overflow-hidden bg-[#F8F7F4] py-16 lg:py-24">
+      {/* Glow Background */}
+      <div className="pointer-events-none absolute right-0 top-0 -z-10 h-72 w-72 rounded-full bg-[#F3DCD4]/50 blur-3xl opacity-70 md:h-96 md:w-96" />
 
-      {/* 2. OVERLAY ESCURO (Garante o contraste do texto com o Verde Oliva) */}
-      <div className="absolute inset-0 bg-linear-to-r from-[#2C4233]/90 via-[#2C4233]/70 to-transparent" />
+      <div className="pointer-events-none absolute bottom-0 left-0 -z-10 h-64 w-64 rounded-full bg-[#B76E79]/10 blur-3xl opacity-60" />
 
-      {/* 3. CONTEÚDO POR CIMA DO FUNDO */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12">
-        <div className="flex flex-col items-center text-center md:max-w-xl md:items-start md:text-left">
-          
-          {/* Tag de destaque */}
-          <span className="mb-4 rounded-full bg-[#F5F0E6]/20 border border-[#F5F0E6]/30 px-4 py-1.5 text-xs font-bold tracking-wider text-[#F5F0E6] uppercase backdrop-blur-sm">
-            🍕 Fermentação Natural de 48h
-          </span>
-          
-          {/* O texto agora muda para Farina (#F5F0E6) para contrastar com o fundo escuro */}
-          <h1 className="text-4xl font-extrabold tracking-tight text-[#F5F0E6] sm:text-5xl lg:text-6xl lg:leading-tight">
-            A verdadeira pizza <br />
-            <span className="text-[#DFB15B]">artesanal moderna.</span>
-          </h1>
-          
-          <p className="mt-6 text-base leading-relaxed text-[#F5F0E6]/80 md:text-lg">
-            Massa leve, bordas aeradas e ingredientes rigorosamente selecionados. Descubra o sabor da tradição italiana com um toque contemporâneo.
-          </p>
-          
-          {/* Botões de Ação */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <Link 
-              href="#cardapio" 
-              className="w-full sm:w-auto rounded-full bg-[#D64527] px-8 py-4 text-center font-bold text-white shadow-lg transition-all duration-300 hover:bg-[#b8351a] hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
-            >
-              Ver Cardápio
-            </Link>
-            
-            <Link 
-              href="#sobre" 
-              className="w-full sm:w-auto rounded-full border-2 border-[#F5F0E6] px-8 py-3.5 text-center font-bold text-[#F5F0E6] transition-all hover:-translate-y-0.5 active:translate-y-0 duration-300 hover:bg-[#F5F0E6] hover:text-[#2C4233] active:scale-95"
-            >
-              Nossa História
-            </Link>
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+          {/* TEXTO */}
+          <div className="z-10 flex flex-col justify-center text-center lg:col-span-7 lg:text-left">
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight text-[#4B4B52] sm:text-5xl lg:text-6xl">
+              Realce seus traços com <br className="hidden sm:inline" />
+              <span className="font-serif font-normal italic text-[#C8A291]">
+                naturalidade
+              </span>{" "}
+              e segurança.
+            </h1>
+
+            <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-[#8E8E93] sm:text-lg lg:mx-0">
+              Tratamentos estéticos personalizados e tecnologia de ponta para
+              cuidar do seu rosto e corpo com leveza, sofisticação e resultados
+              naturais.
+            </p>
+
+            {/* BOTÕES */}
+            <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex w-full items-center justify-center gap-3
+                  rounded-full
+                  bg-[#B76E79]
+                  px-8 py-4
+                  text-lg font-bold
+                  text-white
+                  shadow-md
+                  transition-all duration-300
+                  hover:-translate-y-0.5
+                  hover:bg-[#A45D68]
+                  hover:shadow-lg
+                  sm:w-auto
+                "
+              >
+                <FaWhatsapp size={22} />
+                Agendar Minha Avaliação
+              </a>
+
+              <a
+                href="#gallery"
+                className="
+                  p-2 text-sm font-semibold
+                  text-[#8E8E93]
+                  underline
+                  decoration-[#F3DCD4]
+                  underline-offset-4
+                  transition-colors duration-300
+                  hover:text-[#B76E79]
+                "
+              >
+                Ver procedimentos disponíveis
+              </a>
+            </div>
+
+            {/* MICROPROVA SOCIAL */}
+            <div className="mt-8 flex items-center justify-center gap-3 text-xs text-[#8E8E93] lg:justify-start">
+              <div className="flex -space-x-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#F3DCD4] text-[9px] font-bold text-[#B76E79]">
+                  A
+                </div>
+
+                <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#C8A291] text-[9px] font-bold text-white">
+                  B
+                </div>
+
+                <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-[#B76E79] text-[9px] font-bold text-white">
+                  C
+                </div>
+              </div>
+
+              <span>
+                Mais de <strong>1.200 clientes</strong> com a autoestima
+                renovada.
+              </span>
+            </div>
           </div>
 
+          {/* IMAGEM */}
+          <div className="flex w-full justify-center lg:col-span-5 lg:col-start-8">
+            <div className="relative aspect-4/5 w-full max-w-sm overflow-hidden rounded-[2.5rem] border-4 border-white/70 bg-[#F3DCD4]/20 shadow-2xl sm:max-w-md lg:max-w-none">
+              <Image
+                src="/hero.jpg"
+                alt="Procedimento estético"
+                fill
+                priority
+                className="object-cover transition-transform duration-700 hover:scale-105"
+              />
+
+              {/* SELO */}
+              <div className="absolute bottom-6 left-6 flex items-center gap-3 rounded-2xl border border-[#F3DCD4] bg-white/95 px-4 py-3 shadow-md backdrop-blur-sm">
+                <div className="h-2 w-2 rounded-full bg-[#B76E79] animate-pulse" />
+
+                <p className="text-xs font-medium text-[#4B4B52]">
+                  Atendimento com <br />
+                  <strong className="text-[#B76E79]">
+                    Biossegurança Rigorosa
+                  </strong>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
